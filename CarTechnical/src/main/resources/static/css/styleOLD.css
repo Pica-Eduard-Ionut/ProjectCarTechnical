@@ -1,0 +1,499 @@
+/* =========================
+   GLOBAL LAYOUT & COLORS
+   ========================= */
+
+:root {
+    --primary-color: #2b6cb0;     /* Deep blue */
+    --primary-light: #3182ce;
+    --accent-color: #38b2ac;      /* Teal accent */
+    --danger-color: #e53e3e;
+    --success-color: #48bb78;
+    --background-color: #f7fafc;
+    --card-bg: #ffffff;
+    --text-color: #2d3748;
+    --border-color: #e2e8f0;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* =========================
+   HEADER & FOOTER
+   ========================= */
+
+header nav {
+    background-color: var(--primary-color);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 16px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+header nav a:hover {
+    color: var(--accent-color);
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #718096;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    font-size: 0.9em;
+}
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+h2 {
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 5px;
+}
+
+/* =========================
+   TABLES
+   ========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+}
+
+
+tr:hover {
+    background-color: #edf2f7;
+}
+
+table a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+table a:hover {
+    text-decoration: underline;
+}
+
+th span {
+    color:white;
+}
+/* =========================
+   FORMS
+   ========================= */
+
+form {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="datetime-local"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1em;
+    background-color: #fff;
+    transition: var(--transition);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button,
+input[type="submit"],
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: var(--radius);
+    font-size: 1em;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+    background-color: var(--primary-light);
+}
+
+button[name="type"][value="priority"] {
+    background-color: var(--accent-color);
+}
+
+button[name="type"][value="earliest"] {
+    background-color: var(--success-color);
+}
+
+button[name="type"][value="priority"]:hover,
+button[name="type"][value="earliest"]:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   LINKS & NAVIGATION
+   ========================= */
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* =========================
+   CONTAINERS & CARDS
+   ========================= */
+
+ul {
+    list-style: none;
+    background: var(--card-bg);
+    padding: 15px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    padding: 6px 0;
+    font-weight: 500;
+}
+
+p {
+    margin-top: 8px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    table, form {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    header nav a {
+        margin: 6px 8px;
+    }
+}
+
+/* =========================
+   VEHICLE DETAILS CARD
+   ========================= */
+
+.details-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    margin-top: 25px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    row-gap: 12px;
+    column-gap: 10px;
+}
+
+.details-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    background: var(--primary-color);
+    padding: 10px 16px;
+    color: white;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    background: var(--primary-light);
+    text-decoration: none;
+}
+/* =========================
+   SMALL BUTTONS & ACTIONS
+   ========================= */
+
+.btn-small {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    margin-right: 5px;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #c53030;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Remove spacing from inline delete form */
+.inline-form {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
+/* =========================
+   ACTION BUTTONS
+   ========================= */
+
+.btn-small {
+    padding: 8px 14px;        /* larger buttons */
+    font-size: 0.9em;
+    border-radius: var(--radius);
+    margin-right: 6px;
+}
+
+/* Danger button */
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #c53030;
+}
+
+/* Fix form whitespace around delete button */
+.inline-form {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;   /* fully removes white frame */
+}
+
+.inline-form button {
+    margin: 0; /* ensure no extra spacing */
+}
+
+/* Flex container for action buttons */
+.actions-cell {
+    display: flex;
+    gap: 8px;                 /* more spacing between buttons */
+    align-items: center;
+}
+/* Generic spacing helper */
+.mt20 {
+    margin-top: 20px;
+}
+
+/* Repair white space around cancel form */
+.inline-form {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+}
+
+.inline-form button {
+    margin: 0;
+}
+
+/* Action buttons in tables */
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-small {
+    padding: 8px 14px;
+    font-size: 0.9em;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #c53030;
+}
+
+/* Details layout reused everywhere */
+.details-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 650px;
+    margin-top: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    row-gap: 12px;
+}
+
+.details-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+
+/* Center form nicely */
+.form-wrapper {
+    max-width: 420px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Header row: title + toggle button */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* White card with consistent padding */
+.form-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Inputs */
+.form-card input,
+.form-card select,
+.form-card textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Error & success styling */
+.error-text {
+    color: red;
+    margin-top: 10px;
+}
+
+.success-text {
+    color: green;
+    margin-top: 10px;
+}

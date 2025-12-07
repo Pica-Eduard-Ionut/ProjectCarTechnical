@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Next Scheduled Request</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h2>Next Scheduled Service Request</h2>
+
+<div th:if="${nextRequest != null}" class="details-card">
+    <div class="details-grid">
+        <div class="details-label">ID:</div>
+        <div th:text="${nextRequest.id}"></div>
+
+        <div class="details-label">Vehicle:</div>
+        <div th:text="${nextRequest.vehicle.make + ' ' + nextRequest.vehicle.model}"></div>
+
+        <div class="details-label">Service Type:</div>
+        <div th:text="${nextRequest.serviceType}"></div>
+
+        <div class="details-label">Priority:</div>
+        <div th:text="${nextRequest.priority}"></div>
+
+        <div class="details-label">Requested From:</div>
+        <div th:text="${nextRequest.requestedFrom}"></div>
+
+        <div class="details-label">Status:</div>
+        <div th:text="${nextRequest.status}"></div>
+
+        <div class="details-label">Mechanic:</div>
+        <div th:text="${nextRequest.assignedMechanic != null ? nextRequest.assignedMechanic.name : 'N/A'}"></div>
+    </div>
+
+    <sec:authorize access="hasRole('ADMIN')">
+        <form th:action="@{'/requests/assign/' + ${nextRequest.id}}" method="post" class="mt20">
+            <label>Assign Mechanic:</label>
+            <select name="mechanicId" required>
+                <option th:each="m : ${mechanics}" th:value="${m.id}" th:text="${m.name}"></option>
+            </select>
+            <button type="submit" class="btn">Assign</button>
+        </form>
+    </sec:authorize>
+</div>
+
+<div th:if="${nextRequest == null}">
+    <p>No pending service requests available.</p>
+</div>
+
+<a th:href="@{/requests}" class="btn mt20" style="display:inline-block; width:auto; max-width:200px;">Back to Requests</a>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

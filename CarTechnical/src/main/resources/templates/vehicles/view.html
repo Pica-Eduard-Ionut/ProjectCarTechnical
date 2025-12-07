@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Vehicle Details</title>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h2>Vehicle Details</h2>
+
+<div class="details-card">
+    <div class="details-grid">
+        <div class="details-label">Make:</div>
+        <div th:text="${vehicle.make}"></div>
+
+        <div class="details-label">Model:</div>
+        <div th:text="${vehicle.model}"></div>
+
+        <div class="details-label">Year:</div>
+        <div th:text="${vehicle.year}"></div>
+
+        <div class="details-label">VIN:</div>
+        <div th:text="${vehicle.vin}"></div>
+    </div>
+
+    <a href="/vehicles" class="btn btn-small" style="display:inline-block; width:auto; max-width:200px; margin-top:10px;">Back to List</a>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

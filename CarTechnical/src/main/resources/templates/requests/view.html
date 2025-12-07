@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Request Details</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h2>Service Request Details</h2>
+
+<div class="details-card">
+    <div class="details-grid">
+        <div class="details-label">ID:</div>
+        <div th:text="${request.id}"></div>
+
+        <div class="details-label">Created At:</div>
+        <div th:text="${#temporals.format(request.createdAt, 'yyyy-MM-dd HH:mm')}"></div>
+
+        <div class="details-label">Requested From:</div>
+        <div th:text="${#temporals.format(request.requestedFrom, 'yyyy-MM-dd HH:mm')}"></div>
+
+        <div class="details-label">Requested To:</div>
+        <div th:text="${#temporals.format(request.requestedTo, 'yyyy-MM-dd HH:mm')}"></div>
+
+        <div class="details-label">Service Type:</div>
+        <div th:text="${request.serviceType}"></div>
+
+        <div class="details-label">Status:</div>
+        <div th:text="${request.status}"></div>
+
+        <div class="details-label">Priority:</div>
+        <div th:text="${request.priority}"></div>
+
+        <div class="details-label">Vehicle:</div>
+        <div th:text="${request.vehicle.make + ' ' + request.vehicle.model}"></div>
+
+        <div class="details-label">Mechanic:</div>
+        <div th:text="${request.assignedMechanic != null ? request.assignedMechanic.name : 'N/A'}"></div>
+
+        <div class="details-label">Owner:</div>
+        <div th:text="${request.owner.name}"></div>
+    </div>
+</div>
+
+<a th:href="@{/requests}" class="btn mt20" style="display:inline-block; width:auto; max-width:200px; text-align:center;">Back to Requests</a>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

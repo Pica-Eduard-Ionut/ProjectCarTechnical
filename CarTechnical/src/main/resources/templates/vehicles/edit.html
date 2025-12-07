@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Edit Vehicle</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h2>Edit Vehicle</h2>
+
+<form th:action="@{'/vehicles/edit/' + ${vehicle.id}}" method="post" class="form-card">
+    <label>Make:</label>
+    <input type="text" name="make" th:value="${vehicle.make}" required>
+
+    <label>Model:</label>
+    <input type="text" name="model" th:value="${vehicle.model}" required>
+
+    <label>Year:</label>
+    <input type="number" name="year" th:value="${vehicle.year}" required>
+
+    <label>VIN:</label>
+    <input type="text" name="vin" th:value="${vehicle.vin}" required>
+
+    <div class="form-button-row">
+        <button type="submit" class="btn btn-success">Save Changes</button>
+        <a href="/vehicles" class="btn">Back to My Vehicles</a>
+    </div>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

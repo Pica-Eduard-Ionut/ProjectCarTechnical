@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Service Requests</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h2>Service Requests</h2>
+
+<a th:href="@{/requests/create}" class="btn"
+   sec:authorize="hasRole('OWNER')"
+   style="display:inline-block; width:auto; max-width:200px;">
+    New Request
+</a>
+
+<a th:href="@{/requests/next}" class="btn btn-small"
+   sec:authorize="hasRole('ADMIN')"
+   style="display:inline-block; width:auto; max-width:200px;">
+    View Next Scheduled
+</a>
+
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Service Type</th>
+        <th>Status</th>
+        <th><span sec:authorize="hasRole('ADMIN')">Priority</span></th>
+        <th>Vehicle</th>
+        <th>Assigned Mechanic</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="r : ${requests}"
+        sec:authorize="hasRole('ADMIN')"
+        th:if="${r.status != T(com.example.CarTechnical.models.ServiceStatus).CANCELLED
+                and r.status != T(com.example.CarTechnical.models.ServiceStatus).COMPLETED}">
+
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.serviceType}"></td>
+        <td th:text="${r.status}"></td>
+        <td th:text="${r.priority}"></td>
+        <td th:text="${r.vehicle.make + ' ' + r.vehicle.model}"></td>
+        <td th:text="${r.assignedMechanic != null ? r.assignedMechanic.name : 'N/A'}"></td>
+
+        <td class="actions-cell">
+            <a th:href="@{'/requests/' + ${r.id}}" class="btn btn-small">View</a>
+            <a th:href="@{'/requests/assign/' + ${r.id}}" class="btn btn-small btn-success">Assign</a>
+        </td>
+    </tr>
+
+    <tr th:each="r : ${requests}" sec:authorize="hasRole('OWNER')">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.serviceType}"></td>
+        <td th:text="${r.status}"></td>
+
+        <td></td>
+
+        <td th:text="${r.vehicle != null ? r.vehicle.make + ' ' + r.vehicle.model : 'N/A'}"></td>
+        <td th:text="${r.assignedMechanic != null ? r.assignedMechanic.name : 'N/A'}"></td>
+
+        <td class="actions-cell">
+            <a th:href="@{'/requests/' + ${r.id}}" class="btn btn-small">View</a>
+
+            <span th:if="${r.status != T(com.example.CarTechnical.models.ServiceStatus).CANCELLED}">
+                <form th:action="@{'/requests/cancel/' + ${r.id}}"
+                      method="post" class="inline-form"
+                      onsubmit="return confirm('Cancel request?');">
+                    <button type="submit" class="btn btn-danger btn-small">Cancel</button>
+                </form>
+            </span>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
